@@ -78,14 +78,17 @@ export const constantRoutes = [
   },
 
   {
-    path: '/form',
+    path: '/user',
     component: Layout,
+    redirect: '/user/userList',
+    name: 'User',
+    meta: { title: 'Example', icon: 'example' },
     children: [
       {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
+        path: 'userList',
+        name: 'UserList',
+        component: () => import('@/views/userList/index'),
+        meta: { title: '用户管理', icon: 'table' }
       }
     ]
   },
