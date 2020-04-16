@@ -1,5 +1,10 @@
 <template>
   <div class="user-list-container">
+    <el-form ref="userDetail" :model="form" :rules="rules" :inline="true" label-width="120px">
+      <el-form-item>
+        <el-button type="primary" @click="onSubmit()">Create</el-button>
+      </el-form-item>
+    </el-form>
     <el-table :data="list" border fit highlight-current-row :max-height="tableMaxheight">
       <el-table-column align="center" label="ID" width="95">
         <template slot-scope="scope">
@@ -39,6 +44,7 @@
 
 <script>
 import { getList } from '@/api/table'
+import rules from './rules'
 import Pagination from '@/components/Pagination'// svg component
 import viewport from '@/mixins/viewport'
 
@@ -62,12 +68,14 @@ export default {
     return {
       list: [],
       currentPage: 1,
-      total: 95
+      total: 95,
+      form: {},
+      rules
     }
   },
   computed: {
     tableMaxheight() {
-      return this.clientHeight - 142
+      return this.clientHeight - 192
     }
   },
   created() {
@@ -82,13 +90,21 @@ export default {
       })
     },
     handleEdit(index, row) {
-      console.log(index, row)
+      this.$router.push(
+        {
+          path: '/user/editUser',
+          query: { id: row.id }
+        }
+      )
     },
     handleCurrentChange(page) {
       console.log('handleCurrentChange', page)
     },
     handleSizeChange() {
       console.log('handleSizeChange')
+    },
+    onSubmit() {
+      this.$router.push({ path: '/user/createUser' })
     }
   }
 }

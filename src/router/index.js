@@ -73,6 +73,12 @@ export const constantRoutes = [
         name: 'Tree',
         component: () => import('@/views/tree/index'),
         meta: { title: 'Tree', icon: 'tree' }
+      },
+      {
+        path: 'form',
+        name: 'Form',
+        component: () => import('@/views/form/index'),
+        meta: { title: 'form', icon: 'form' }
       }
     ]
   },
@@ -82,13 +88,27 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/user/userList',
     name: 'User',
-    meta: { title: 'Example', icon: 'example' },
+    meta: { title: '用户管理', icon: 'example' },
     children: [
       {
         path: 'userList',
         name: 'UserList',
         component: () => import('@/views/userList/index'),
-        meta: { title: '用户管理', icon: 'table' }
+        meta: { title: '用户列表', icon: 'table' }
+      },
+      {
+        path: 'createUser',
+        name: 'CreateUser',
+        component: () => import('@/views/user/create'),
+        hidden: true,
+        meta: { title: '新建用户', icon: 'table' }
+      },
+      {
+        path: 'editUser',
+        name: 'EditUser',
+        component: () => import('@/views/user/edit'),
+        hidden: true,
+        meta: { title: '编辑用户', icon: 'table' }
       }
     ]
   },
