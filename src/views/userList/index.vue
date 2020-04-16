@@ -1,6 +1,6 @@
 <template>
   <div class="user-list-container">
-    <el-table :data="list" border fit highlight-current-row max-height="400">
+    <el-table :data="list" border fit highlight-current-row :max-height="tableMaxheight">
       <el-table-column align="center" label="ID" width="95">
         <template slot-scope="scope">
           {{ scope.$index }}
@@ -40,6 +40,7 @@
 <script>
 import { getList } from '@/api/table'
 import Pagination from '@/components/Pagination'// svg component
+import viewport from '@/mixins/viewport'
 
 export default {
   name: 'UserList',
@@ -56,11 +57,17 @@ export default {
       return stateMap[state]
     }
   },
+  mixins: [viewport],
   data() {
     return {
       list: [],
       currentPage: 1,
       total: 95
+    }
+  },
+  computed: {
+    tableMaxheight() {
+      return this.clientHeight - 142
     }
   },
   created() {
