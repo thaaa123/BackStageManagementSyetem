@@ -3,7 +3,7 @@
     <logo v-if="showLogo" :collapse="isCollapse" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
-        :default-active="activeMenu"
+        :default-active="activedMenu"
         :collapse="isCollapse"
         :background-color="variables.menuBg"
         :text-color="variables.menuText"
@@ -28,12 +28,18 @@ export default {
   components: { SidebarItem, Logo },
   computed: {
     ...mapGetters([
-      'sidebar'
+      'sidebar',
+      'activeMenu'
     ]),
     routes() {
+      if (this.activeMenu) {
+        const selectedMenu = this.$router.options.routes.filter(router => router.path === this.activeMenu || router.redirect === this.activeMenu)
+        console.log('selectedMenu', selectedMenu)
+        return selectedMenu
+      }
       return this.$router.options.routes
     },
-    activeMenu() {
+    activedMenu() {
       const route = this.$route
       const { meta, path } = route
       // if set path, the sidebar will highlight the path you set

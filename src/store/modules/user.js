@@ -6,7 +6,8 @@ const getDefaultState = () => {
   return {
     token: getToken(),
     name: '',
-    avatar: ''
+    avatar: '',
+    activeMenu: ''
   }
 }
 
@@ -24,6 +25,9 @@ const mutations = {
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
+  },
+  SET_ACTIVE_MENU: (state, activeMenu) => {
+    state.activeMenu = activeMenu
   }
 }
 
@@ -41,6 +45,11 @@ const actions = {
         reject(error)
       })
     })
+  },
+
+  // get user info
+  setActiveMenu({ commit, state }, data) {
+    commit('SET_ACTIVE_MENU', data)
   },
 
   // get user info

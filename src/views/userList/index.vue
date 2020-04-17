@@ -75,7 +75,7 @@ export default {
   },
   computed: {
     tableMaxheight() {
-      return this.clientHeight - 192
+      return this.clientHeight - 200
     }
   },
   created() {
@@ -90,12 +90,10 @@ export default {
       })
     },
     handleEdit(index, row) {
-      this.$router.push(
-        {
-          path: '/user/editUser',
-          query: { id: row.id }
-        }
-      )
+      this.$router.push({
+        path: '/user/editUser',
+        query: { id: row.id }
+      })
     },
     handleCurrentChange(page) {
       console.log('handleCurrentChange', page)
@@ -112,12 +110,12 @@ export default {
 
 <style lang="scss">
   .user-list-container {
-    padding: 20px;
+    padding: 20px 20px 0;
 
     .pagination {
       display: flex;
       flex-direction: row-reverse;
-      padding: 10px;
+      padding: 15px 10px;
     }
   }
 </style>
