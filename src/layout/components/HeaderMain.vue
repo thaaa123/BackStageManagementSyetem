@@ -68,6 +68,9 @@ export default {
       const route = this.$route
       const { meta, path, matched } = route
       // if set path, the sidebar will highlight the path you set
+      if (path === '/dashboard') {
+        return '/'
+      }
       if (matched[0] && matched[0].path) {
         return matched[0].path
       } else {
@@ -99,6 +102,10 @@ export default {
     handleSelect(key, keyPath) {
       this.$store.dispatch('user/setActiveMenu', key)
       // this.setActiveMenu(key)
+    },
+    async logout() {
+      await this.$store.dispatch('user/logout')
+      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     }
     // ...mapActions(['user/setActiveMenu'])
   }

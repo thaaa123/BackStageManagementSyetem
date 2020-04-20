@@ -48,6 +48,10 @@ export default {
     basePath: {
       type: String,
       default: ''
+    },
+    firstPath: {
+      type: String,
+      default: ''
     }
   },
   data() {
@@ -88,7 +92,11 @@ export default {
       if (isExternal(this.basePath)) {
         return this.basePath
       }
-      return path.resolve(this.basePath, routePath)
+      if (isExternal(this.firstPath)) {
+        return this.firstPath
+      }
+      const basePath = path.resolve(this.firstPath, this.basePath)
+      return path.resolve(basePath, routePath)
     }
   }
 }

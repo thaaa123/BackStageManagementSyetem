@@ -12,7 +12,7 @@
         :collapse-transition="false"
         mode="vertical"
       >
-        <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path" />
+        <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path" :first-path="route.firstPath" />
       </el-menu>
     </el-scrollbar>
   </div>
@@ -34,8 +34,11 @@ export default {
     routes() {
       if (this.activeMenu) {
         const selectedMenu = this.$router.options.routes.filter(router => router.path === this.activeMenu || router.redirect === this.activeMenu)
-        console.log('selectedMenu', selectedMenu)
-        return selectedMenu
+        const firstPath = selectedMenu[0].path
+        selectedMenu[0].children.forEach(child => {
+          child.firstPath = firstPath
+        })
+        return selectedMenu[0].children
       }
       return this.$router.options.routes
     },
