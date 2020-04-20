@@ -57,133 +57,77 @@ export const constantRoutes = [
   },
 
   {
-    path: '/example',
-    component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
-    children: [
-      {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
-      },
-      {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
-      },
-      {
-        path: 'form',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'form', icon: 'form' }
-      }
-    ]
-  },
-
-  {
-    path: '/user',
-    component: Layout,
-    redirect: '/user/userList',
-    name: 'User',
-    meta: { title: '用户管理', icon: 'example' },
-    children: [
-      {
-        path: 'userList',
-        name: 'UserList',
-        component: () => import('@/views/userList/index'),
-        meta: { title: '用户列表', icon: 'table' }
-      },
-      {
-        path: 'createUser',
-        name: 'CreateUser',
-        component: () => import('@/views/user/create'),
-        hidden: true,
-        meta: { title: '新建用户', icon: 'table' }
-      },
-      {
-        path: 'editUser',
-        name: 'EditUser',
-        component: () => import('@/views/user/edit'),
-        hidden: true,
-        meta: { title: '编辑用户', icon: 'table' }
-      }
-    ]
-  },
-
-  {
     path: '/nested',
     component: Layout,
     redirect: '/nested/menu1',
     name: 'Nested',
     meta: {
-      title: 'Nested',
+      title: '系统设置',
       icon: 'nested'
     },
     children: [
       {
         path: 'menu1',
         component: () => import('@/views/nested/menu1/index'), // Parent router-view
+        redirect: '/nested/menu1/menu1-1',
         name: 'Menu1',
-        meta: { title: 'Menu1' },
+        meta: { title: '组织架构管理', showMenu: true },
         children: [
           {
             path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
+            component: () => import('@/views/dashboard/index'),
             name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
+            meta: { title: '组织架构' }
           }
         ]
       },
       {
         path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        meta: { title: 'menu2' }
-      }
-    ]
-  },
-
-  {
-    path: 'external-link',
-    component: Layout,
-    meta: { title: 'External Link', icon: 'link' },
-    children: [
+        component: () => import('@/views/nested/menu1/index'), // Parent router-view
+        redirect: '/nested/menu2/menu1-2',
+        name: 'Menu2',
+        meta: { title: '角色管理', showMenu: true },
+        children: [
+          {
+            path: 'menu1-2',
+            component: () => import('@/views/nested/menu1/menu1-1'),
+            name: 'Menu1-2',
+            meta: { title: '角色' }
+          }
+        ]
+      },
       {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
+        path: 'menu3',
+        component: () => import('@/views/nested/menu1/index'), // Parent router-view
+        redirect: '/nested/menu3/menu1-3',
+        name: 'Menu3',
+        meta: { title: '团队管理', showMenu: true },
+        children: [
+          {
+            path: 'menu1-3',
+            component: () => import('@/views/nested/menu1/menu1-1'),
+            name: 'Menu1-3',
+            meta: { title: '团队' }
+          }
+        ]
+      },
+      {
+        path: 'menu4',
+        component: () => import('@/views/nested/menu1/index'), // Parent router-view
+        redirect: '/nested/menu3/menu1-3',
+        name: 'Menu4',
+        meta: { title: '用户管理', showMenu: true },
+        children: [
+          {
+            path: 'menu1-4',
+            component: () => import('@/views/nested/menu1/menu1-1'),
+            name: 'Menu1-4',
+            meta: { title: '用户' }
+          }
+        ]
       }
     ]
   },
-
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]

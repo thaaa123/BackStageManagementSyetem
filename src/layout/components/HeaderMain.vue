@@ -87,7 +87,6 @@ export default {
   methods: {
     init() {
       this.firstNavs = this.$router.options.routes
-      console.log('firstNavs', this.firstNavs)
       this.$store.dispatch('user/setActiveMenu', this.activeMenu)
     },
     resolvePath(routePath) {
@@ -101,7 +100,6 @@ export default {
     },
     handleSelect(key, keyPath) {
       this.$store.dispatch('user/setActiveMenu', key)
-      // this.setActiveMenu(key)
     },
     async logout() {
       await this.$store.dispatch('user/logout')

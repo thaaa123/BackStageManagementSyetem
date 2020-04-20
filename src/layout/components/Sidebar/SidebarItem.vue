@@ -62,6 +62,7 @@ export default {
   },
   methods: {
     hasOneShowingChild(children = [], parent) {
+      console.log('parent', parent)
       const showingChildren = children.filter(item => {
         if (item.hidden) {
           return false
@@ -73,7 +74,7 @@ export default {
       })
 
       // When there is only one child router, the child router is displayed by default
-      if (showingChildren.length === 1) {
+      if (showingChildren.length === 1 && !parent.meta.showMenu) {
         return true
       }
 
