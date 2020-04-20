@@ -5,7 +5,7 @@
     </div>
     <div class="content">
       <div class="firstNav">
-        <el-menu :default-active="activeMenu" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+        <el-menu :default-active="activeMenu" class="el-menu-demo" mode="horizontal" :background-color="variables.firstMenuBg" :text-color="variables.firstMenuText" :active-text-color="variables.firstMmenuActiveText" @select="handleSelect">
           <template v-for="nav in firstNavs">
             <el-menu-item
               v-if="!nav.hidden && nav.meta"
@@ -49,6 +49,7 @@
 import { mapGetters } from 'vuex'
 import path from 'path'
 import { isExternal } from '@/utils/validate'
+import variables from '@/styles/variables.scss'
 
 export default {
   name: 'HeaderMain',
@@ -79,6 +80,9 @@ export default {
         }
       }
       return path
+    },
+    variables() {
+      return variables
     }
   },
   created() {
