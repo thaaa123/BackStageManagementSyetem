@@ -17,7 +17,7 @@ export default {
     total: {
       type: Number,
       required: true,
-      default: 100
+      default: 0
     },
     pageSize: {
       type: Number,

@@ -75,7 +75,7 @@ export const constantRoutes = [
         children: [
           {
             path: 'menu1-1',
-            component: () => import('@/views/dashboard/index'),
+            component: () => import('@/views/organStructure/index'),
             name: 'Menu1-1',
             meta: { title: '组织架构' }
           }
